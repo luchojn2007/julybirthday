@@ -1,62 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Expedición Julián REX - 6 Años!</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Invitación digital de cumpleaños de Julián con temática de dinosaurios.">
+  <title>Expedición Julián Rex | 6 años</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style_mejorado.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script defer src="script_mejorado.js"></script>
 </head>
 <body>
-
-    <div id="custom-cursor">🔍</div>
-
-    <div id="loader">
-        <div class="huella">🐾</div>
-        <p>RASTREANDO DINOSAURIOS...</p>
+  <div id="loader" aria-hidden="true">
+    <div class="loader-track">
+      <span class="loader-icon">🦖</span>
+      <p>Preparando la expedición jurásica…</p>
     </div>
+  </div>
 
-    <header>
-        <div class="hero-content">
-            <p class="tagline">¡ALERTA DE AVENTURA!</p>
-            <h1 id="titulo">JULIÁN <span class="rex">REX</span></h1>
-            <h2 id="edad">¡CUMPLE 6 AÑOS!</h2>
+  <header class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__inner">
+      <p class="eyebrow">¡Alerta de aventura!</p>
+      <h1>Julián <span>Rex</span></h1>
+      <p class="hero__subtitle">Cumplo 6 años y quiero celebrar contigo una tarde llena de juegos, diversión y aventura prehistórica.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#evento">Ver misión</a>
+        <a class="btn btn--ghost" href="https://maps.app.goo.gl/NKL7LCH1PqDgX3qx9" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro section">
+      <div class="container intro__grid">
+        <div class="photo-card reveal" aria-label="Fotografía de Julián">
+          <div class="photo-card__badge">Explorador oficial</div>
+          <img src="https://detconsultores.com/cms/wp-content/uploads/2026/03/july_2.png" alt="Julián con temática de explorador" loading="eager">
         </div>
-    </header>
 
-    <section class="main-content">
-        <div class="foto-container" id="foto-julian">
-            <div class="marco-foto">
-                <img src="https://detconsultores.com/cms/wp-content/uploads/2026/03/july_2.png" alt="Julián el Explorador">
-            </div>
+        <div class="message-card reveal">
+          <div class="icon-circle">🦕</div>
+          <h2>Una invitación muy especial</h2>
+          <p>Te espero para compartir una celebración inolvidable con temática de dinosaurios. Habrá sonrisas, juegos y muchas sorpresas.</p>
+          <p class="message-card__note">Tu presencia hará que esta expedición sea todavía más divertida.</p>
         </div>
-
-        <div class="card" id="mision-card">
-            <div class="icon-dino">🦖</div>
-            <h3 class="anim-text">Misión Jurásica</h3>
-            <p class="anim-text">¡Hola! Soy Julián y te espero para celebrar mis 6 años en una expedición inolvidable.</p>
-            
-            <div class="grid-datos">
-                <div class="dato anim-dato"><strong>📅 DÍA:</strong> Domingo, 22 de marzo</div>
-                <div class="dato anim-dato"><strong>⏰ HORA:</strong> 13:30 PM</div>
-                <div class="dato anim-dato"><strong>📍 LUGAR:</strong> Valle de las aventuras (Parque de la mujer y el niño)</div>
-                <div class="dato anim-dato"><strong>🦴 CODE:</strong> Explorador</div>
-            </div>
-
-            <div class="botones-container">
-                <button onclick="lanzarLluvia()" class="btn-confirmar">Confirmar misión🦕</button>
-                <a href="https://maps.app.goo.gl/XFqDChtw2UTjmeQw9" target="_blank" class="btn-ubicacion">Ver ubicación 🗺️</a>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <footer>
-        <p>Diseño Multimedia Profesional • Expedición Julián 2026</p>
-    </footer>
+    <section id="evento" class="section section--soft">
+      <div class="container event-layout">
+        <div class="event-card reveal">
+          <div class="section-heading">
+            <p class="section-heading__tag">Detalles del evento</p>
+            <h2>Misión jurásica</h2>
+          </div>
 
-    <script src="script.js"></script>
+          <div class="info-grid">
+            <article class="info-item">
+              <span class="info-item__icon">📅</span>
+              <div>
+                <h3>Fecha</h3>
+                <p>Domingo, 22 de marzo de 2026</p>
+              </div>
+            </article>
+
+            <article class="info-item">
+              <span class="info-item__icon">⏰</span>
+              <div>
+                <h3>Hora</h3>
+                <p>13:30</p>
+              </div>
+            </article>
+
+            <article class="info-item">
+              <span class="info-item__icon">📍</span>
+              <div>
+                <h3>Lugar</h3>
+                <p>Parque de la Mujer y el Niño</p>
+              </div>
+            </article>
+
+            <article class="info-item">
+              <span class="info-item__icon">🦴</span>
+              <div>
+                <h3>Código de acceso</h3>
+                <p>Explorador</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="cta-row">
+            <button type="button" class="btn btn--primary" id="confirmarBtn">Confirmar asistencia</button>
+            <a class="btn btn--secondary" href="https://wa.me/593987375196?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20a%20la%20Expedici%C3%B3n%20de%20Juli%C3%A1n%20Rex%20%F0%9F%A6%96" target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp</a>
+          </div>
+        </div>
+
+        <aside class="countdown-card reveal" aria-live="polite">
+          <div class="section-heading">
+            <p class="section-heading__tag">Cuenta regresiva</p>
+            <h2>Falta poco</h2>
+          </div>
+
+          <div class="countdown" id="countdown">
+            <div class="countdown__item"><strong id="days">00</strong><span>días</span></div>
+            <div class="countdown__item"><strong id="hours">00</strong><span>horas</span></div>
+            <div class="countdown__item"><strong id="minutes">00</strong><span>minutos</span></div>
+            <div class="countdown__item"><strong id="seconds">00</strong><span>segundos</span></div>
+          </div>
+
+          <p class="countdown-card__text">Prepara tu espíritu aventurero para acompañar a Julián en esta gran celebración.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Con cariño, te esperamos en la expedición de Julián • 2026</p>
+    </div>
+  </footer>
 </body>
 </html>
