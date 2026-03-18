@@ -29,14 +29,15 @@
       <h1>Julián <span>Rex</span></h1>
       <p class="hero__subtitle">Cumplo 6 años y quiero celebrar contigo una tarde llena de juegos, diversión y aventura prehistórica.</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="#evento">Ver misión</a>
-        <a class="btn btn--ghost" href="https://maps.app.goo.gl/NKL7LCH1PqDgX3qx9" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
-      </div>
+  <a class="btn btn--primary" href="#intro">Ver misión</a>
+  <a class="btn btn--secondary btn--cta" href="#regalos">Reserva un regalo</a>
+  <a class="btn btn--ghost" href="https://maps.app.goo.gl/mGDTs5s8LVVD4AW39" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+</div>
     </div>
   </header>
 
   <main>
-    <section class="intro section">
+    <section id="intro" class="intro section">
       <div class="container intro__grid">
         <div class="photo-card reveal" aria-label="Fotografía de Julián">
           <div class="photo-card__badge">Explorador oficial</div>
@@ -81,7 +82,7 @@
               <span class="info-item__icon">📍</span>
               <div>
                 <h3>Lugar</h3>
-                <p>Parque de la Mujer y el Niño</p>
+                <p>Parque Cuscungo</p>
               </div>
             </article>
 
@@ -94,9 +95,7 @@
             </article>
           </div>
 
-          <div class="cta-row">
-            <a class="btn btn--secondary" href="https://wa.me/593987375196?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20a%20la%20Expedici%C3%B3n%20de%20Juli%C3%A1n%20Rex%20%F0%9F%A6%96" target="_blank" rel="noopener noreferrer">Confirmar asistencia</a>
-          </div>
+         
         </div>
 
         <aside class="countdown-card reveal" aria-live="polite">
@@ -139,8 +138,8 @@
             <article class="gift-help-card">
               <h3>Datos útiles</h3>
               <ul>
-                <li>👕 Ropa: talla 6</li>
-                <li>👟 Zapatos: talla 30</li>
+                <li>👕 Ropa: talla 8</li>
+                <li>👟 Zapatos: talla 20 cm </li>
                 <li>💚 También puedes elegir un aporte libre</li>
               </ul>
             </article>
@@ -152,6 +151,26 @@
       </div>
     </section>
   </main>
+  <section class="section final-cta">
+  <div class="container">
+    <div class="final-cta__card reveal">
+      <p class="section-heading__tag">Cierre de la expedición</p>
+      <h2>¿Listo para acompañarnos?</h2>
+      <p class="final-cta__text">
+        Si ya revisaste los detalles del evento y la lista de regalos, puedes confirmar tu asistencia por WhatsApp.
+      </p>
+      <a 
+  id="btnConfirmar"
+  class="btn btn--primary"
+  href="https://wa.me/593987375196?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20a%20la%20Expedici%C3%B3n%20de%20Juli%C3%A1n%20Rex%20%F0%9F%A6%96"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+        Confirmar asistencia por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
 
   <footer class="footer">
     <div class="container">
@@ -182,6 +201,16 @@
       <button type="button" class="btn btn--ghost gift-modal__btn" id="giftModalCancel">Cancelar</button>
       <button type="button" class="btn btn--primary gift-modal__btn" id="giftModalConfirm">Confirmar reserva</button>
     </div>
+  </div>
+</div>
+<div id="toast" class="toast" aria-live="polite" aria-hidden="true">
+  <div class="toast__inner">
+    <span class="toast__icon">🎉</span>
+    <div class="toast__content">
+      <strong class="toast__title">¡Reserva confirmada!</strong>
+      <p class="toast__text">Tu regalo se guardó correctamente.</p>
+    </div>
+    <button type="button" class="toast__close" id="toastClose" aria-label="Cerrar">×</button>
   </div>
 </div>
 </body>

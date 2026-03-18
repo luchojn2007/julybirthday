@@ -289,9 +289,77 @@ window.addEventListener("load", async () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     await loadGifts();
+showToast("¡Reserva confirmada!", `Tu regalo quedó reservado correctamente a nombre de ${nombre}.`);
   } catch (error) {
     console.error("Error general al iniciar:", error);
   } finally {
     hideLoader();
   }
 });
+const toast = document.getElementById("toast");
+const toastClose = document.getElementById("toastClose");
+
+let toastTimer;
+
+function showToast(title, text) {
+  if (!toast) return;
+
+  const titleEl = toast.querySelector(".toast__title");
+  const textEl = toast.querySelector(".toast__text");
+
+  if (titleEl) titleEl.textContent = title;
+  if (textEl) textEl.textContent = text;
+
+  toast.classList.add("is-visible");
+  toast.setAttribute("aria-hidden", "false");
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, 3200);
+}
+
+function hideToast() {
+  if (!toast) return;
+  toast.classList.remove("is-visible");
+  toast.setAttribute("aria-hidden", "true");
+}
+
+if (toastClose) {
+  toastClose.addEventListener("click", hideToast);
+}
+const btnConfirmar = document.getElementById("btnConfirmar");
+
+if (btnConfirmar) {
+  btnConfirmar.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // Lanzar confeti
+    if (window.confetti) {
+      const duration = 1200;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 6,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 6,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    // abrir WhatsApp después de la animación
+    setTimeout(() => {
+      window.open(this.href, "_blank");
+    }, 900);
+  });
+}
