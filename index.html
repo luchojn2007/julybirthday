@@ -12,7 +12,7 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script defer src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
   <div id="loader" aria-hidden="true">
@@ -95,7 +95,6 @@
           </div>
 
           <div class="cta-row">
-            <!--<button type="button" class="btn btn--primary" id="confirmarBtn">Confirmar asistencia</button>-->
             <a class="btn btn--secondary" href="https://wa.me/593987375196?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20a%20la%20Expedici%C3%B3n%20de%20Juli%C3%A1n%20Rex%20%F0%9F%A6%96" target="_blank" rel="noopener noreferrer">Confirmar asistencia</a>
           </div>
         </div>
@@ -115,6 +114,41 @@
 
           <p class="countdown-card__text">Prepara tu espíritu aventurero para acompañar a Julián en esta gran celebración.</p>
         </aside>
+      </div>
+    </section>
+
+    <section id="regalos" class="section gifts-section">
+      <div class="container">
+        <div class="gifts-shell reveal">
+          <div class="section-heading section-heading--center">
+            <p class="section-heading__tag">Lista inteligente de regalos</p>
+            <h2>Reserva un regalo</h2>
+            <p class="section-heading__lead">Para evitar regalos repetidos, puedes elegir una opción disponible y reservarla con tu nombre.</p>
+          </div>
+
+          <div class="gift-help-grid">
+            <article class="gift-help-card">
+              <h3>Preferencias de Julián</h3>
+              <ul>
+                <li>🦖 Dinosaurios y figuras de aventura</li>
+                <li>🚗 Vehículos, pistas y juguetes de movimiento</li>
+                <li>📚 Libros infantiles y actividades creativas</li>
+              </ul>
+            </article>
+
+            <article class="gift-help-card">
+              <h3>Datos útiles</h3>
+              <ul>
+                <li>👕 Ropa: talla 6</li>
+                <li>👟 Zapatos: talla 30</li>
+                <li>💚 También puedes elegir un aporte libre</li>
+              </ul>
+            </article>
+          </div>
+
+          <div id="giftStatus" class="gift-status">Cargando lista de regalos…</div>
+          <div id="giftList" class="gift-grid" aria-live="polite"></div>
+        </div>
       </div>
     </section>
   </main>
