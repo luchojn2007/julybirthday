@@ -638,3 +638,118 @@ button {
     background: gray;
     cursor: not-allowed;
 }
+.gift-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.gift-modal.is-open {
+  display: block;
+}
+
+.gift-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 26, 24, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.gift-modal__dialog {
+  position: relative;
+  width: min(92%, 520px);
+  margin: 8vh auto 0;
+  background: #f8f4ea;
+  color: #18352e;
+  border-radius: 24px;
+  padding: 28px 22px 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(24, 53, 46, 0.08);
+}
+
+.gift-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #18352e;
+}
+
+.gift-modal__eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2f6b3d;
+}
+
+.gift-modal__title {
+  margin: 0 0 10px;
+  font-size: 1.9rem;
+  line-height: 1.1;
+}
+
+.gift-modal__text {
+  margin: 0 0 16px;
+  color: #486159;
+}
+
+.gift-modal__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.gift-modal__input {
+  width: 100%;
+  border: 1px solid #d7d1c3;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: #fffdf8;
+  color: #18352e;
+}
+
+.gift-modal__input:focus {
+  outline: none;
+  border-color: #d8a612;
+  box-shadow: 0 0 0 4px rgba(216, 166, 18, 0.16);
+}
+
+.gift-modal__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.gift-modal__btn {
+  flex: 1;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .gift-modal__dialog {
+    width: min(94%, 420px);
+    margin-top: 10vh;
+    padding: 24px 18px 18px;
+    border-radius: 20px;
+  }
+
+  .gift-modal__title {
+    font-size: 1.6rem;
+  }
+
+  .gift-modal__actions {
+    flex-direction: column;
+  }
+}

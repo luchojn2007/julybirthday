@@ -158,5 +158,31 @@
       <p>Con cariño, te esperamos en la expedición de Julián • 2026</p>
     </div>
   </footer>
+  <div id="giftModal" class="gift-modal" aria-hidden="true">
+  <div class="gift-modal__backdrop"></div>
+  <div class="gift-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="giftModalTitle">
+    <button type="button" class="gift-modal__close" id="giftModalClose" aria-label="Cerrar">×</button>
+
+    <p class="gift-modal__eyebrow">Reserva tu regalo</p>
+    <h3 id="giftModalTitle" class="gift-modal__title">Completa tu reserva</h3>
+    <p class="gift-modal__text" id="giftModalText">
+      Ingresa tu nombre para reservar este regalo.
+    </p>
+
+    <label class="gift-modal__label" for="giftNameInput">Tu nombre</label>
+    <input
+      id="giftNameInput"
+      class="gift-modal__input"
+      type="text"
+      placeholder="Escribe tu nombre"
+      maxlength="60"
+    >
+
+    <div class="gift-modal__actions">
+      <button type="button" class="btn btn--ghost gift-modal__btn" id="giftModalCancel">Cancelar</button>
+      <button type="button" class="btn btn--primary gift-modal__btn" id="giftModalConfirm">Confirmar reserva</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -22,11 +22,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Referencias UI
+// Referencias UI generales
 const loader = document.getElementById("loader");
 const revealItems = document.querySelectorAll(".reveal");
 const giftList = document.getElementById("giftList");
 const giftStatus = document.getElementById("giftStatus");
+
+// Referencias modal de regalos
+const giftModal = document.getElementById("giftModal");
+const giftModalText = document.getElementById("giftModalText");
+const giftNameInput = document.getElementById("giftNameInput");
+const giftModalClose = document.getElementById("giftModalClose");
+const giftModalCancel = document.getElementById("giftModalCancel");
+const giftModalConfirm = document.getElementById("giftModalConfirm");
+const giftModalBackdrop = document.querySelector(".gift-modal__backdrop");
 
 // Fecha del evento
 const targetDate = new Date("2026-03-22T13:30:00-05:00").getTime();
@@ -108,9 +117,69 @@ function updateCountdown() {
   seconds.textContent = String(secondValue).padStart(2, "0");
 }
 
-async function reservarGift(giftId) {
-  const nombre = prompt("Escribe tu nombre para reservar este regalo:");
-  if (!nombre || !nombre.trim()) return;
+function openGiftModal(giftName) {
+  return new Promise((resolve) => {
+    if (
+      !giftModal ||
+      !giftModalText ||
+      !giftNameInput ||
+      !giftModalClose ||
+      !giftModalCancel ||
+      !giftModalConfirm
+    ) {
+      resolve(null);
+      return;
+    }
+
+    giftModalText.textContent = `Ingresa tu nombre para reservar: ${giftName}`;
+    giftNameInput.value = "";
+    giftModal.classList.add("is-open");
+    giftModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    setTimeout(() => {
+      giftNameInput.focus();
+    }, 60);
+
+    const cleanup = () => {
+      giftModal.classList.remove("is-open");
+      giftModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+
+      giftModalConfirm.removeEventListener("click", onConfirm);
+      giftModalCancel.removeEventListener("click", onCancel);
+      giftModalClose.removeEventListener("click", onCancel);
+      giftModalBackdrop?.removeEventListener("click", onCancel);
+      giftNameInput.removeEventListener("keydown", onKeydown);
+    };
+
+    const onConfirm = () => {
+      const value = giftNameInput.value.trim();
+      cleanup();
+      resolve(value || null);
+    };
+
+    const onCancel = () => {
+      cleanup();
+      resolve(null);
+    };
+
+    const onKeydown = (e) => {
+      if (e.key === "Enter") onConfirm();
+      if (e.key === "Escape") onCancel();
+    };
+
+    giftModalConfirm.addEventListener("click", onConfirm);
+    giftModalCancel.addEventListener("click", onCancel);
+    giftModalClose.addEventListener("click", onCancel);
+    giftModalBackdrop?.addEventListener("click", onCancel);
+    giftNameInput.addEventListener("keydown", onKeydown);
+  });
+}
+
+async function reservarGift(giftId, giftName) {
+  const nombre = await openGiftModal(giftName);
+  if (!nombre) return;
 
   const giftRef = doc(db, "gifts", giftId);
 
@@ -131,7 +200,7 @@ async function reservarGift(giftId) {
         throw new Error("Este regalo ya no tiene cupos disponibles.");
       }
 
-      reservas.push(nombre.trim());
+      reservas.push(nombre);
 
       transaction.update(giftRef, {
         cupos_reservados: cuposReservados + 1,
@@ -140,7 +209,6 @@ async function reservarGift(giftId) {
     });
 
     await loadGifts();
-    alert("Reserva realizada con éxito.");
   } catch (error) {
     console.error("Error al reservar:", error);
     alert(error.message || "No se pudo completar la reserva.");
@@ -161,23 +229,22 @@ async function loadGifts() {
       total += 1;
       const data = docSnap.data();
 
+      const nombre = data.nombre || "Regalo";
       const cuposTotales = Number(data.cupos_totales || 0);
       const cuposReservados = Number(data.cupos_reservados || 0);
       const cuposRestantes = Math.max(cuposTotales - cuposReservados, 0);
       const estaDisponible = cuposRestantes > 0;
+      const reservas = Array.isArray(data.reservas) ? data.reservas : [];
 
       if (estaDisponible) disponibles += 1;
 
       const div = document.createElement("div");
       div.className = "gift-card";
 
-      const reservasTexto =
-        Array.isArray(data.reservas) && data.reservas.length
-          ? data.reservas.join(", ")
-          : "Aún no reservado";
+      const reservasTexto = reservas.length ? reservas.join(", ") : "Aún no reservado";
 
       div.innerHTML = `
-        <h3>${data.nombre || "Regalo"}</h3>
+        <h3>${nombre}</h3>
         <p class="gift-card__quota">${cuposReservados} de ${cuposTotales} reservados</p>
         <p class="gift-card__remaining">
           ${estaDisponible ? `Quedan ${cuposRestantes} cupo(s)` : "Sin cupos disponibles"}
@@ -189,8 +256,9 @@ async function loadGifts() {
       `;
 
       const btn = div.querySelector(".gift-card__btn");
+
       if (btn && estaDisponible) {
-        btn.addEventListener("click", () => reservarGift(docSnap.id));
+        btn.addEventListener("click", () => reservarGift(docSnap.id, nombre));
       }
 
       giftList.appendChild(div);
@@ -214,7 +282,7 @@ async function loadGifts() {
   }
 }
 
-// Inicio seguro
+// Inicio
 window.addEventListener("load", async () => {
   try {
     animateIntro();
